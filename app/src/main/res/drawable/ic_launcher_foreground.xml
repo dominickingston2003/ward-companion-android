@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Medical cross centered, sized to fit safe zone (66dp). -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,30 H60 V48 H78 V60 H60 V78 H48 V60 H30 V48 H48 Z" />
+</vector>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   The ward-server runs plain HTTP on the SP7 over Tailscale. Android
+   blocks cleartext by default; we whitelist the Tailscale ts.net suffix
+   (and a few common LAN addresses for local dev).
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">ts.net</domain>
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain>     <!-- Android emulator -->
+        <domain includeSubdomains="true">192.168.0.0</domain>
+        <domain includeSubdomains="true">192.168.1.0</domain>
+        <domain includeSubdomains="true">ward-server</domain>  <!-- SP7 default Tailscale name -->
+    </domain-config>
+</network-security-config>
