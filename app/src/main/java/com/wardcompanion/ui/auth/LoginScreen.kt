@@ -34,9 +34,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun LoginScreen(
     initialError: String?,
-    onLogin: (username: String, password: String, server: String?) -> Unit,
+    onLogin: (email: String, password: String, server: String?) -> Unit,
 ) {
-    var username by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var server by rememberSaveable { mutableStateOf("") }
     var showPwd by rememberSaveable { mutableStateOf(false) }
@@ -64,9 +64,9 @@ fun LoginScreen(
         Spacer(Modifier.height(24.dp))
 
         OutlinedTextField(
-            value = username,
-            onValueChange = { username = it },
-            label = { Text("Username") },
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") },
             singleLine = true,
             modifier = Modifier.widthIn(max = 360.dp),
         )
@@ -115,8 +115,8 @@ fun LoginScreen(
 
         Spacer(Modifier.height(16.dp))
         Button(
-            onClick = { onLogin(username, password, server.takeIf { it.isNotBlank() }) },
-            enabled = username.isNotBlank() && password.isNotBlank(),
+            onClick = { onLogin(email, password, server.takeIf { it.isNotBlank() }) },
+            enabled = email.isNotBlank() && password.isNotBlank(),
             modifier = Modifier.widthIn(max = 360.dp),
         ) {
             Text("Sign in")

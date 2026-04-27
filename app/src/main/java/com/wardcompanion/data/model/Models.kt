@@ -6,12 +6,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AppUser(
     val id: String,
-    val username: String,
+    val email: String,
     val displayName: String? = null,
 )
 
 @Serializable
-data class LoginRequest(val username: String, val password: String)
+data class LoginRequest(val email: String, val password: String)
 
 @Serializable
 data class LoginResponse(val token: String, val user: AppUser)

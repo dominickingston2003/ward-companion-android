@@ -27,9 +27,9 @@ class WardRepository @Inject constructor(
     private val settings: SettingsStore,
     @ApplicationContext private val ctx: android.content.Context,
 ) {
-    suspend fun login(username: String, password: String) {
-        val resp = api.login(LoginRequest(username, password))
-        settings.saveAuth(resp.token, resp.user.id, resp.user.username)
+    suspend fun login(email: String, password: String) {
+        val resp = api.login(LoginRequest(email, password))
+        settings.saveAuth(resp.token, resp.user.id, resp.user.displayName ?: resp.user.email)
     }
 
     suspend fun logout() {

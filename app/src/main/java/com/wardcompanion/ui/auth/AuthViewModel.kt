@@ -40,14 +40,14 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun login(username: String, password: String, server: String?) {
+    fun login(email: String, password: String, server: String?) {
         viewModelScope.launch {
             _state.value = AuthState.Loading
             try {
                 if (!server.isNullOrBlank()) settings.setServerUrl(server)
-                repo.login(username.trim(), password)
+                repo.login(email.trim(), password)
                 live.connect()
-                _state.value = AuthState.LoggedIn(username)
+                _state.value = AuthState.LoggedIn(email)
             } catch (t: Throwable) {
                 _state.value = AuthState.LoggedOut(error = t.userMessage())
             }
