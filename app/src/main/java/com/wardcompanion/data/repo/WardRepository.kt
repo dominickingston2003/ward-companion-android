@@ -37,8 +37,8 @@ class WardRepository @Inject constructor(
     }
 
     // patients
-    suspend fun listPatients(includeDischarged: Boolean = false): List<Patient> =
-        api.listPatients(includeDischarged).patients
+    suspend fun listPatients(): List<Patient> =
+        api.listPatients().patients
     suspend fun getPatient(id: String): Patient = api.getPatient(id).patient
     suspend fun createPatient(req: CreatePatientRequest): Patient = api.createPatient(req).patient
     suspend fun updatePatient(id: String, req: CreatePatientRequest): Patient =

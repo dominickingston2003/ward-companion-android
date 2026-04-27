@@ -14,7 +14,7 @@ interface WardApi {
 
     @GET("/patients")
     suspend fun listPatients(
-        @Query("includeDischarged") includeDischarged: Boolean = false,
+        
     ): PatientsResponse
 
     @GET("/patients/{id}")

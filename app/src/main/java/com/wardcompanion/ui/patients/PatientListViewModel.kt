@@ -44,7 +44,7 @@ class PatientListViewModel @Inject constructor(
         viewModelScope.launch {
             _ui.update { it.copy(loading = true, error = null) }
             try {
-                val list = repo.listPatients(includeDischarged = _ui.value.showDischarged)
+                val list = repo.listPatients()
                 _ui.update { it.copy(patients = list.sortedBy { p -> p.bedNumber ?: p.name }, loading = false) }
             } catch (t: Throwable) {
                 _ui.update { it.copy(loading = false, error = t.message ?: "Failed to load") }
