@@ -38,16 +38,16 @@ class WardRepository @Inject constructor(
 
     // patients
     suspend fun listPatients(includeDischarged: Boolean = false): List<Patient> =
-        api.listPatients(includeDischarged)
-    suspend fun getPatient(id: String): Patient = api.getPatient(id)
-    suspend fun createPatient(req: CreatePatientRequest): Patient = api.createPatient(req)
+        api.listPatients(includeDischarged).patients
+    suspend fun getPatient(id: String): Patient = api.getPatient(id).patient
+    suspend fun createPatient(req: CreatePatientRequest): Patient = api.createPatient(req).patient
     suspend fun updatePatient(id: String, req: CreatePatientRequest): Patient =
-        api.updatePatient(id, req)
-    suspend fun discharge(id: String): Patient = api.dischargePatient(id)
+        api.updatePatient(id, req).patient
+    suspend fun discharge(id: String): Patient = api.dischargePatient(id).patient
     suspend fun deletePatient(id: String) = api.deletePatient(id)
 
     // photos
-    suspend fun listPhotos(patientId: String): List<PhotoItem> = api.listPhotos(patientId)
+    suspend fun listPhotos(patientId: String): List<PhotoItem> = api.listPhotos(patientId).photos
 
     suspend fun uploadPhoto(
         patientId: String,
@@ -65,17 +65,17 @@ class WardRepository @Inject constructor(
         val takenAtPart = takenAt.toString()
             .toRequestBody("text/plain".toMediaTypeOrNull())
         val captionPart = caption?.toRequestBody("text/plain".toMediaTypeOrNull())
-        api.uploadPhoto(patientId, part, takenAtPart, captionPart)
+        api.uploadPhoto(patientId, part, takenAtPart, captionPart).photo
     }
 
     suspend fun deletePhoto(id: String) = api.deletePhoto(id)
 
     // notes
-    suspend fun listNotes(patientId: String): List<DailyNote> = api.listNotes(patientId)
+    suspend fun listNotes(patientId: String): List<DailyNote> = api.listNotes(patientId).notes
     suspend fun createNote(patientId: String, date: Long, text: String): DailyNote =
-        api.createNote(CreateDailyNoteRequest(patientId, date, text))
+        api.createNote(CreateDailyNoteRequest(patientId, date, text)).note
     suspend fun updateNote(id: String, date: Long, text: String): DailyNote =
-        api.updateNote(id, UpdateDailyNoteRequest(date, text))
+        api.updateNote(id, UpdateDailyNoteRequest(date, text)).note
     suspend fun deleteNote(id: String) = api.deleteNote(id)
 
     // utility

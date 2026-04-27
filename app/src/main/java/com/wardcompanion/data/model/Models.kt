@@ -82,3 +82,21 @@ data class HealthResponse(
     val ok: Boolean,
     @SerialName("version") val version: String? = null,
 )
+
+@Serializable
+data class PatientsResponse(val patients: List<Patient>)
+
+@Serializable
+data class PatientResponse(val patient: Patient)
+
+@Serializable
+data class PhotosResponse(val photos: List<PhotoItem>)
+
+@Serializable
+data class PhotoResponse(val photo: PhotoItem)
+
+@Serializable
+data class NotesResponse(val notes: List<DailyNote>)
+
+@Serializable
+data class NoteResponse(val note: DailyNote)
